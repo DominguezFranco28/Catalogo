@@ -45,8 +45,11 @@
             this.dgvListadoArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListadoArticulos.Location = new System.Drawing.Point(25, 73);
             this.dgvListadoArticulos.Name = "dgvListadoArticulos";
+            this.dgvListadoArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListadoArticulos.Size = new System.Drawing.Size(599, 429);
             this.dgvListadoArticulos.TabIndex = 0;
+            this.dgvListadoArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListadoArticulos_CellContentClick);
+            this.dgvListadoArticulos.SelectionChanged += new System.EventHandler(this.dgvListadoArticulos_SelectionChanged);
             // 
             // pictureBox1
             // 
@@ -100,7 +103,6 @@
             this.lblFiltro.Size = new System.Drawing.Size(72, 13);
             this.lblFiltro.TabIndex = 3;
             this.lblFiltro.Text = "Filtrar Artículo";
-            this.lblFiltro.Click += new System.EventHandler(this.lblFiltro_Click);
             // 
             // textBox1
             // 
@@ -108,7 +110,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 4;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // principal
             // 
@@ -125,6 +126,7 @@
             this.Controls.Add(this.dgvListadoArticulos);
             this.Name = "principal";
             this.Text = "Catálogo de artículos";
+            this.Load += new System.EventHandler(this.principal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoArticulos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

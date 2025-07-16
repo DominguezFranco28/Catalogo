@@ -12,7 +12,7 @@ namespace dominio
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Imagen { get; set; }
-        public int Precio { get; set; } //concatenar cuon $ cuando se llame
+        public decimal Precio { get; set; } //concatenar cuon $ cuando se llame
         public Marca Marca { get; set; }
         public Categoria Categoria{ get; set; }
         
