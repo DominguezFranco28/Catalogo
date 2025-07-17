@@ -15,11 +15,12 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("select Codigo, Nombre, A.Descripcion, ImagenUrl , Precio, M.Descripcion AS Marca, C.Descripcion as Categoría, a.IdCategoria, A.IdMarca from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdCategoria = C.ID and M.Id = A.IdMarca ");
+                datos.SetearConsulta("select A.Id, Codigo, Nombre, A.Descripcion, ImagenUrl , Precio, M.Descripcion AS Marca, C.Descripcion as Categoría, a.IdCategoria, A.IdMarca from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdCategoria = C.ID and M.Id = A.IdMarca ");
                 datos.EjecutarLectura();
                 while (datos.Lector.Read()) //Read pasa al siguiente registro de la lista de lo que este leyendo en la DB. Mientras haya un articulo en la base de datos, sigue en el while
                 {
                     Articulo articulo = new Articulo();
+                    articulo.Id = (int)datos.Lector["Id"];
                     articulo.CodigoArticulo = (string)datos.Lector["Codigo"];
                     articulo.Nombre = (string)datos.Lector["Nombre"];
                     articulo.Descripcion = (string)datos.Lector["Descripcion"];
@@ -51,5 +52,80 @@ namespace negocio
                 datos.CerrarConexion();
             }
         }
+        public void Agregar (Articulo nuevoArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("insert into ARTICULOS  (Codigo , Nombre, Descripcion, ImagenUrl, Precio, IdCategoria, IdMarca) values (@codigo, @nombre, @descripcion, @imagenUrl, @precio, @idCategoria, @idMarca)");
+                datos.SetearParametro("@codigo", nuevoArticulo.CodigoArticulo);
+                datos.SetearParametro("@nombre", nuevoArticulo.Nombre);
+                datos.SetearParametro("@descripcion", nuevoArticulo.Descripcion);
+                datos.SetearParametro("@imagenUrl", nuevoArticulo.Imagen);
+                datos.SetearParametro("@precio", nuevoArticulo.Precio);
+                datos.SetearParametro("@idCategoria", nuevoArticulo.Categoria.Id);
+                datos.SetearParametro("@idMarca", nuevoArticulo.Marca.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            
+        }
+
+        public void Modificar(Articulo articuloModificar)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("Update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, ImagenUrl = @imagenUrl, Precio = @precio, IdCategoria = @idCategoria, IdMarca = @idMarca where Id = @id");
+                datos.SetearParametro("@codigo", articuloModificar.CodigoArticulo);
+                datos.SetearParametro("@nombre", articuloModificar.Nombre);
+                datos.SetearParametro("@descripcion", articuloModificar.Descripcion);
+                datos.SetearParametro("@imagenUrl", articuloModificar.Imagen);
+                datos.SetearParametro("@precio", articuloModificar.Precio);
+                datos.SetearParametro("@idCategoria", articuloModificar.Categoria.Id);
+                datos.SetearParametro("@idMarca", articuloModificar.Marca.Id);
+                datos.SetearParametro("@id", articuloModificar.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+        }
+
+        public void Eliminar(Articulo articuloSeleccionado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("delete from ARTICULOS where Id = @id");
+                datos.SetearParametro("@id", articuloSeleccionado.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
+ 
 }
