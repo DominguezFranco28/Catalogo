@@ -54,6 +54,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(397, 48);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(345, 325);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -125,7 +126,7 @@
             this.txtCodigo.Location = new System.Drawing.Point(198, 48);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(100, 20);
-            this.txtCodigo.TabIndex = 1;
+            this.txtCodigo.TabIndex = 0;
             // 
             // txtNombre
             // 
@@ -139,14 +140,14 @@
             this.txtDescripcion.Location = new System.Drawing.Point(198, 154);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(100, 20);
-            this.txtDescripcion.TabIndex = 1;
+            this.txtDescripcion.TabIndex = 2;
             // 
             // txtImagen
             // 
             this.txtImagen.Location = new System.Drawing.Point(198, 254);
             this.txtImagen.Name = "txtImagen";
             this.txtImagen.Size = new System.Drawing.Size(100, 20);
-            this.txtImagen.TabIndex = 1;
+            this.txtImagen.TabIndex = 4;
             this.txtImagen.Leave += new System.EventHandler(this.txtImagen_Leave);
             // 
             // cboCategoria
@@ -156,7 +157,7 @@
             this.cboCategoria.Location = new System.Drawing.Point(188, 360);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(121, 21);
-            this.cboCategoria.TabIndex = 2;
+            this.cboCategoria.TabIndex = 6;
             // 
             // cboMarca
             // 
@@ -165,14 +166,14 @@
             this.cboMarca.Location = new System.Drawing.Point(188, 307);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(121, 21);
-            this.cboMarca.TabIndex = 2;
+            this.cboMarca.TabIndex = 5;
             // 
             // btnConfirmar
             // 
             this.btnConfirmar.Location = new System.Drawing.Point(46, 408);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirmar.TabIndex = 4;
+            this.btnConfirmar.TabIndex = 7;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
@@ -182,7 +183,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(198, 408);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 4;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -197,7 +198,7 @@
             0});
             this.nudPrecio.Name = "nudPrecio";
             this.nudPrecio.Size = new System.Drawing.Size(120, 20);
-            this.nudPrecio.TabIndex = 5;
+            this.nudPrecio.TabIndex = 3;
             // 
             // info_articulo
             // 

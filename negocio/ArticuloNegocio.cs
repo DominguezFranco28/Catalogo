@@ -29,18 +29,18 @@ namespace negocio
 
                     articulo.Categoria = new Categoria();
                     articulo.Categoria.Id = (int)datos.Lector["IdCategoria"];
-                    articulo.Categoria.Descripcion= (string)datos.Lector["Categoría"];  
-                    
+                    articulo.Categoria.Descripcion = (string)datos.Lector["Categoría"];
+
                     articulo.Marca = new Marca();
                     articulo.Marca.Id = (int)datos.Lector["IdMarca"];
-                    articulo.Marca.Descripcion= (string)datos.Lector["Marca"];
+                    articulo.Marca.Descripcion = (string)datos.Lector["Marca"];
 
 
                     listaArticulos.Add(articulo);
                 }
                 return listaArticulos; //Cuando sale del while xq no hay mas datos, retornar la lista de articulos cargados.
 
-            
+
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace negocio
                 datos.CerrarConexion();
             }
         }
-        public void Agregar (Articulo nuevoArticulo)
+        public void Agregar(Articulo nuevoArticulo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -76,7 +76,7 @@ namespace negocio
             {
                 datos.CerrarConexion();
             }
-            
+
         }
 
         public void Modificar(Articulo articuloModificar)
@@ -126,6 +126,115 @@ namespace negocio
                 datos.CerrarConexion();
             }
         }
+
+        public List<Articulo> Filtrar(string campo, string criterio, string filtro)
+        {
+            List<Articulo> listaArticulo = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "select A.Id, Codigo, Nombre, A.Descripcion, ImagenUrl , Precio, M.Descripcion AS Marca, C.Descripcion as Categoría, a.IdCategoria, A.IdMarca from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdCategoria = C.ID and M.Id = A.IdMarca and ";
+                //la base de la consulta es la misma que el metodo listar,
+                //ya que son los articulos que estan lsitados los que hay que filtrar. Solo se agrega "and" al final para concatenar el string que sigue en el condicional
+                if (campo == "Nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Nombre like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "Nombre like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "Nombre like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+                else if (campo == "Marca")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "M.Descripcion like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "M.Descripcion like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "M.Descripcion like '%" + filtro + "%'";
+                            break;
+                    }
+
+                }
+                else if (campo == "Categoría")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "C.Descripcion like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "C.Descripcion like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "C.Descripcion like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (criterio)
+                    {
+                        case "Es mayor a ":
+                            consulta += "ROUND(Precio, 2) > " + filtro; //este casteo de redondeo necesario porque esta con formato money en SQL, y yo lo redondee en la dgv
+                            break;
+                        case "Es menor a ":
+                            consulta += "ROUND(Precio, 2) < " + filtro;
+                            break;
+                        default:
+                            consulta += "ROUND(Precio, 2) =" + filtro;
+                            break;
+                    }
+                }
+                //si los botoes de campo y criterio tuvieran mas opciones, podria usarse un switch para esta parte.
+                datos.SetearConsulta(consulta);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo articulo = new Articulo();
+                    articulo.Id = (int)datos.Lector["Id"];
+                    articulo.CodigoArticulo = (string)datos.Lector["Codigo"];
+                    articulo.Nombre = (string)datos.Lector["Nombre"];
+                    articulo.Descripcion = (string)datos.Lector["Descripcion"];
+                    articulo.Imagen = (string)datos.Lector["ImagenUrl"];
+                    articulo.Precio = (decimal)datos.Lector["Precio"];
+
+                    articulo.Categoria = new Categoria();
+                    articulo.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                    articulo.Categoria.Descripcion = (string)datos.Lector["Categoría"];
+
+                    articulo.Marca = new Marca();
+                    articulo.Marca.Id = (int)datos.Lector["IdMarca"];
+                    articulo.Marca.Descripcion = (string)datos.Lector["Marca"];
+
+
+                    listaArticulo.Add(articulo);
+                    //misma logica que el metodo listar, pero con filtro aplicado
+                }
+                return listaArticulo;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+        }
     }
- 
 }
