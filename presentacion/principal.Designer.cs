@@ -44,15 +44,17 @@
             this.lblAvanzado = new System.Windows.Forms.Label();
             this.pnlFiltroAvanzado = new System.Windows.Forms.Panel();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnVerDetalle = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.pnl1 = new System.Windows.Forms.Panel();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnVerDetalle = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.pnlBajo = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagen)).BeginInit();
             this.pnlFiltroAvanzado.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnl1.SuspendLayout();
+            this.pnlBajo.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvListadoArticulos
@@ -118,7 +120,7 @@
             this.cboCampo.Location = new System.Drawing.Point(20, 302);
             this.cboCampo.Name = "cboCampo";
             this.cboCampo.Size = new System.Drawing.Size(121, 21);
-            this.cboCampo.TabIndex = 5;
+            this.cboCampo.TabIndex = 0;
             this.cboCampo.SelectedIndexChanged += new System.EventHandler(this.cboCampo_SelectedIndexChanged);
             // 
             // cboCriterio
@@ -129,7 +131,7 @@
             this.cboCriterio.Location = new System.Drawing.Point(20, 364);
             this.cboCriterio.Name = "cboCriterio";
             this.cboCriterio.Size = new System.Drawing.Size(121, 21);
-            this.cboCriterio.TabIndex = 5;
+            this.cboCriterio.TabIndex = 1;
             // 
             // lblCampo
             // 
@@ -159,19 +161,20 @@
             this.txtFiltro.Location = new System.Drawing.Point(421, 27);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(390, 20);
-            this.txtFiltro.TabIndex = 4;
+            this.txtFiltro.TabIndex = 0;
             this.txtFiltro.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnBuscar
             // 
             this.btnBuscar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnBuscar.BackColor = System.Drawing.SystemColors.Control;
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Location = new System.Drawing.Point(30, 482);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(100, 39);
-            this.btnBuscar.TabIndex = 6;
+            this.btnBuscar.TabIndex = 3;
             this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtFiltroAvanzado
@@ -180,7 +183,7 @@
             this.txtFiltroAvanzado.Location = new System.Drawing.Point(20, 439);
             this.txtFiltroAvanzado.Name = "txtFiltroAvanzado";
             this.txtFiltroAvanzado.Size = new System.Drawing.Size(121, 20);
-            this.txtFiltroAvanzado.TabIndex = 7;
+            this.txtFiltroAvanzado.TabIndex = 2;
             // 
             // contextMenuStrip1
             // 
@@ -200,7 +203,7 @@
             // 
             // pnlFiltroAvanzado
             // 
-            this.pnlFiltroAvanzado.BackColor = System.Drawing.Color.LightGray;
+            this.pnlFiltroAvanzado.BackColor = System.Drawing.Color.Silver;
             this.pnlFiltroAvanzado.Controls.Add(this.btnLimpiar);
             this.pnlFiltroAvanzado.Controls.Add(this.lblAvanzado);
             this.pnlFiltroAvanzado.Controls.Add(this.lblFiltroAvanzado);
@@ -219,72 +222,95 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnLimpiar.BackColor = System.Drawing.SystemColors.Control;
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.Location = new System.Drawing.Point(30, 561);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 39);
-            this.btnLimpiar.TabIndex = 8;
+            this.btnLimpiar.TabIndex = 4;
             this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.UseVisualStyleBackColor = false;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // btnVerDetalle
+            // pnl1
             // 
-            this.btnVerDetalle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnVerDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerDetalle.Location = new System.Drawing.Point(1006, 574);
-            this.btnVerDetalle.Name = "btnVerDetalle";
-            this.btnVerDetalle.Size = new System.Drawing.Size(100, 26);
-            this.btnVerDetalle.TabIndex = 2;
-            this.btnVerDetalle.Text = "Ver Detalle";
-            this.btnVerDetalle.UseVisualStyleBackColor = true;
-            this.btnVerDetalle.Click += new System.EventHandler(this.btnVerDetalle_Click);
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(272, 593);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(100, 26);
-            this.btnAgregar.TabIndex = 2;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.pnl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnl1.BackColor = System.Drawing.Color.LightGray;
+            this.pnl1.Controls.Add(this.txtFiltro);
+            this.pnl1.Controls.Add(this.lblFiltro);
+            this.pnl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl1.Location = new System.Drawing.Point(158, 0);
+            this.pnl1.Name = "pnl1";
+            this.pnl1.Size = new System.Drawing.Size(1106, 75);
+            this.pnl1.TabIndex = 10;
+            this.pnl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnModificar
             // 
             this.btnModificar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnModificar.BackColor = System.Drawing.SystemColors.Control;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(490, 593);
+            this.btnModificar.Location = new System.Drawing.Point(396, 40);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(100, 26);
-            this.btnModificar.TabIndex = 2;
+            this.btnModificar.TabIndex = 1;
             this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.UseVisualStyleBackColor = false;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
             this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnEliminar.BackColor = System.Drawing.Color.Crimson;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(708, 593);
+            this.btnEliminar.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnEliminar.Location = new System.Drawing.Point(740, 40);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 26);
-            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // panel1
+            // btnVerDetalle
             // 
-            this.panel1.Controls.Add(this.txtFiltro);
-            this.panel1.Controls.Add(this.lblFiltro);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(158, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1106, 75);
-            this.panel1.TabIndex = 10;
+            this.btnVerDetalle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnVerDetalle.BackColor = System.Drawing.SystemColors.Control;
+            this.btnVerDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerDetalle.Location = new System.Drawing.Point(224, 40);
+            this.btnVerDetalle.Name = "btnVerDetalle";
+            this.btnVerDetalle.Size = new System.Drawing.Size(100, 26);
+            this.btnVerDetalle.TabIndex = 0;
+            this.btnVerDetalle.Text = "Ver Detalle";
+            this.btnVerDetalle.UseVisualStyleBackColor = false;
+            this.btnVerDetalle.Click += new System.EventHandler(this.btnVerDetalle_Click);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAgregar.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(568, 40);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(100, 26);
+            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // pnlBajo
+            // 
+            this.pnlBajo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlBajo.BackColor = System.Drawing.Color.LightGray;
+            this.pnlBajo.Controls.Add(this.btnEliminar);
+            this.pnlBajo.Controls.Add(this.btnAgregar);
+            this.pnlBajo.Controls.Add(this.btnModificar);
+            this.pnlBajo.Controls.Add(this.btnVerDetalle);
+            this.pnlBajo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBajo.Location = new System.Drawing.Point(158, 581);
+            this.pnlBajo.Name = "pnlBajo";
+            this.pnlBajo.Size = new System.Drawing.Size(1106, 100);
+            this.pnlBajo.TabIndex = 11;
             // 
             // principal
             // 
@@ -292,12 +318,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnl1);
+            this.Controls.Add(this.pnlBajo);
             this.Controls.Add(this.pnlFiltroAvanzado);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.btnVerDetalle);
             this.Controls.Add(this.pbxImagen);
             this.Controls.Add(this.dgvListadoArticulos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -311,8 +334,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagen)).EndInit();
             this.pnlFiltroAvanzado.ResumeLayout(false);
             this.pnlFiltroAvanzado.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnl1.ResumeLayout(false);
+            this.pnl1.PerformLayout();
+            this.pnlBajo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -333,12 +357,13 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label lblAvanzado;
         private System.Windows.Forms.Panel pnlFiltroAvanzado;
-        private System.Windows.Forms.Button btnVerDetalle;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Panel pnl1;
+        private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnVerDetalle;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Panel pnlBajo;
     }
 }
 

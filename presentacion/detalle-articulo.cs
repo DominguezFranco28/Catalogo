@@ -52,7 +52,7 @@ namespace presentacion
             {
                     txtCodigo.Text = articulo.CodigoArticulo;
                     txtNombre.Text = articulo.Nombre;
-                    txtDescripcion.Text = articulo.Descripcion;
+                    rtbDescripcion.Text = articulo.Descripcion;
                     pbxImagen.Text = articulo.Imagen;
                     txtPrecio.Text= articulo.Precio.ToString("$#,0.00");
                     txtCategoria.Text = articulo.Categoria.Descripcion;
@@ -66,6 +66,8 @@ namespace presentacion
                 MessageBox.Show( "No pudieron cargarse los recursos correctamente" + ex.ToString());
             }
         }
+
+
     }
     
 }

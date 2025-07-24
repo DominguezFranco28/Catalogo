@@ -75,9 +75,6 @@
     <EmbeddedResource Include="agregar-propiedad.resx">
       <DependentUpon>agregar-propiedad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="detalle-articulo.aa.resx">
-      <DependentUpon>detalle-articulo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="detalle-articulo.resx">
       <DependentUpon>detalle-articulo.cs</DependentUpon>
     </EmbeddedResource>

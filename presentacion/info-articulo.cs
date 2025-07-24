@@ -48,8 +48,8 @@ namespace presentacion
                     cboCategoria.SelectedValue = articulo.Categoria.Id;
                     cboMarca.SelectedValue = articulo.Marca.Id;
                     CargarImagen(articulo.Imagen);
-    }
-}
+                }
+            }
             catch (Exception ex)
             {
 
@@ -84,7 +84,13 @@ namespace presentacion
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
-            {          
+            {
+                //Validacion de carga paracampos obligatorios (marcados con  asterisco rojo)
+                if (string.IsNullOrWhiteSpace(txtCodigo.Text) || string.IsNullOrWhiteSpace(txtNombre.Text) || cboCategoria.SelectedItem == null || cboMarca.SelectedItem == null || nudPrecio.Value <= 0)
+                {
+                    MessageBox.Show("Por favor complete todos los campos obligatorios", "Existen campos incompletos",MessageBoxButtons.OK,  MessageBoxIcon.Warning);
+                    return; // Sale del método sin ejecutar el resto del código
+                }
                 if (articulo == null)
                 {
                     articulo = new Articulo(); //Si no tiene nada pasado por parametro, lo creamos aca y asignamos los cambios.
@@ -103,13 +109,14 @@ namespace presentacion
                 {
                     //Si el ID es distinto de 0, entonces existia previamente
                     negocio.Modificar(articulo);
-                    MessageBox.Show("Articulo modificado con exito");
+                    MessageBox.Show(articulo.Nombre , "Artículo modificado con exito", MessageBoxButtons.OK,MessageBoxIcon.Information);
+    
 
                 }
                 else
                 {
                     negocio.Agregar(articulo);
-                    MessageBox.Show("Articulo agregado con exito");
+                    MessageBox.Show(articulo.Nombre, "Artículo agregado con exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                     Close();
@@ -141,5 +148,6 @@ namespace presentacion
             agregarPropiedad.ShowDialog(); //Muestro el form de detalle articulo para que se pueda agregar una categoria o marca nueva
             Cargar();
         }
+
     }
 }

@@ -47,8 +47,9 @@ namespace presentacion
                 //tendria que hacer una validacion de numeros
                 categoria.Descripcion = nombre; //seteo el nombre de la categoria con el texto ingresado en el textbox
                 categoriaNegocio.Agregar(categoria);
-                MessageBox.Show("Categoría "+ nombre.ToString()+ " agregada con éxito");
-                
+                MessageBox.Show(nombre.ToString().ToUpper(), "Categoría agregada con éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
             }
             catch (Exception ex)
             {
@@ -72,7 +73,7 @@ namespace presentacion
 
                     marca.Descripcion = nombre; //seteo el nombre de la categoria con el texto ingresado en el textbox
                     marcaNegocio.Agregar(marca);
-                    MessageBox.Show("Marca "+  nombre.ToString()+" agregada con éxito");
+                MessageBox.Show(nombre.ToString().ToUpper(), "Marca agregada con éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 catch (Exception ex)
@@ -127,9 +128,5 @@ namespace presentacion
             Close();
         }
 
-        private void txtNombreNuevo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
