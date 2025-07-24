@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="agregar-propiedad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="agregar-propiedad.Designer.cs">
+      <DependentUpon>agregar-propiedad.cs</DependentUpon>
+    </Compile>
     <Compile Include="detalle-articulo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="agregar-propiedad.resx">
+      <DependentUpon>agregar-propiedad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="detalle-articulo.aa.resx">
+      <DependentUpon>detalle-articulo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="detalle-articulo.resx">
       <DependentUpon>detalle-articulo.cs</DependentUpon>
     </EmbeddedResource>

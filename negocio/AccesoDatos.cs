@@ -36,7 +36,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al ejecutar lectura de datos.", ex);
             }
         }
 

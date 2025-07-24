@@ -49,19 +49,33 @@ namespace presentacion
         }
         private void Filtrar()
         {
-            List<Articulo> listaFiltrada;
-            string filtro = txtFiltro.Text;
-            if (filtro != "") //filtro sencillo, solo por Nombre o Codigo
+            try
             {
-                listaFiltrada = listaArticulos.FindAll(articulo => articulo.Nombre.ToUpper().Contains(filtro.ToUpper()) || articulo.CodigoArticulo.ToUpper().Contains(filtro.ToUpper()));  //Filtro por nombre                
+                if (listaArticulos == null) 
+                {
+                    MessageBox.Show("La lista de artículos aún no fue cargada.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                List<Articulo> listaFiltrada;
+                string filtro = txtFiltro.Text;
+                if (filtro != "") //filtro sencillo, solo por Nombre o Codigo
+                {
+                    listaFiltrada = listaArticulos.FindAll(articulo => articulo.Nombre.ToUpper().Contains(filtro.ToUpper()) || articulo.CodigoArticulo.ToUpper().Contains(filtro.ToUpper()));  //Filtro por nombre                
+                }
+                else
+                {
+                    listaFiltrada = listaArticulos;
+                }
+                dgvListadoArticulos.DataSource = null;
+                dgvListadoArticulos.DataSource = listaFiltrada;
+                OcultarColumnas();
             }
-            else
+            catch (Exception ex)
             {
-                listaFiltrada = listaArticulos;
+
+                MessageBox.Show("Ocurrio un error al filtrar los articulos" + ex.ToString());
             }
-            dgvListadoArticulos.DataSource = null;
-            dgvListadoArticulos.DataSource = listaFiltrada;
-            OcultarColumnas();  
+           
 
         }
         private void CargarImagen(string imagen)
@@ -74,7 +88,6 @@ namespace presentacion
             catch (Exception)
             {
                 pbxImagen.Load("https://programacion.net/files/article/20161110041116_image-not-found.png");
-
             }
 
         }
@@ -146,6 +159,7 @@ namespace presentacion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+
             info_articulo agregarForm = new info_articulo();
             agregarForm.ShowDialog();
             Cargar();
@@ -154,11 +168,12 @@ namespace presentacion
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            //saque lo de volver a indicar el seleccionado aca, porque si por ejemplo usabas el filtro, ponias cualquier cosa y dabas a modificar se rompia la app
+            //Saque lo de volver a indicar el seleccionado aca, porque si por ejemplo usabas el filtro,
+            //ponias cualquier cosa y dabas a modificar se rompia la app (quedaba un item X digamos, pero sin estar seleccionado en la grilla x el usuario)
             //de esta manera, te modifica el ultimo item que haya quedado seleccionado (cuya imagen se ve)
             if (ValidarSeleccion()) //chequeo si el usuario tiene un objeto seleccionado
                 return;
-            info_articulo modificarForm = new info_articulo(articuloSeleccionado);
+           info_articulo modificarForm = new info_articulo(articuloSeleccionado);
            modificarForm.ShowDialog();
            Cargar();           
         }
@@ -168,7 +183,6 @@ namespace presentacion
             if (ValidarSeleccion()) //chequeo si el usuario tiene un objeto seleccionado
                 return;
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
-            articuloSeleccionado = (Articulo)dgvListadoArticulos.CurrentRow.DataBoundItem;
             try
             {
 
@@ -183,7 +197,7 @@ namespace presentacion
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("No se pudo eliminar el artículo, vuelva a intentarlo mas tárde" + ex.ToString());
             }
                
         }
@@ -200,31 +214,35 @@ namespace presentacion
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("No se pudo ver el detalle del artículo, vuelva a intentarlo mas tárde" + ex.ToString());
             }
-        }
-        private void lblFiltro_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string opcion = cboCampo.SelectedItem.ToString();
-            // chequeamos la opcion del primer criterio del filtro, para quede opciones acorde para el sig criterio del filtro
-            if (opcion == "Precio")
+            try
             {
-                cboCriterio.Items.Clear();
-                cboCriterio.Items.Add("Es mayor a ");
-                cboCriterio.Items.Add("Es menor a ");
-                cboCriterio.Items.Add("Es igual");
+                string opcion = cboCampo.SelectedItem.ToString();
+                // chequeamos la opcion del primer criterio del filtro, para quede opciones acorde para el sig criterio del filtro
+                if (opcion == "Precio")
+                {
+                    cboCriterio.Items.Clear();
+                    cboCriterio.Items.Add("Es mayor a ");
+                    cboCriterio.Items.Add("Es menor a ");
+                    cboCriterio.Items.Add("Es igual");
+                }
+                else //son todos los demas textos, asi que no hago mas condiciones, todos comparten el mismo criterio en este caso
+                {
+                    cboCriterio.Items.Clear();
+                    cboCriterio.Items.Add("Comienza con");
+                    cboCriterio.Items.Add("Termina con");
+                    cboCriterio.Items.Add("Contiene");
+                }
             }
-            else //son todos los demas textos, asi que no hago mas condiciones, todos comparten el mismo criterio en este caso
+            catch (Exception ex)
             {
-                cboCriterio.Items.Clear();
-                cboCriterio.Items.Add("Comienza con");
-                cboCriterio.Items.Add("Termina con");
-                cboCriterio.Items.Add("Contiene");
+
+                MessageBox.Show("Ocurrió un error inesperado, vuelva a intentarlo más tarde." + ex.ToString());
             }
         }
 
@@ -244,12 +262,13 @@ namespace presentacion
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+
+                    MessageBox.Show("Ocurrió un error inesperado, vuelva a intentarlo más tarde." + ex.ToString());
                 }
             
         }
 
-        private void btnFiltrar_Click(object sender, EventArgs e)
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
             cboCriterio.Items.Clear();
             cboCampo.Items.Clear();

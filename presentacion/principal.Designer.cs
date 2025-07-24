@@ -43,7 +43,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lblAvanzado = new System.Windows.Forms.Label();
             this.pnlFiltroAvanzado = new System.Windows.Forms.Panel();
-            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnVerDetalle = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -98,7 +98,6 @@
             this.lblFiltro.Size = new System.Drawing.Size(119, 17);
             this.lblFiltro.TabIndex = 3;
             this.lblFiltro.Text = "Filtrado Rápido";
-            this.lblFiltro.Click += new System.EventHandler(this.lblFiltro_Click);
             // 
             // lblFiltroAvanzado
             // 
@@ -110,7 +109,6 @@
             this.lblFiltroAvanzado.Size = new System.Drawing.Size(81, 15);
             this.lblFiltroAvanzado.TabIndex = 3;
             this.lblFiltroAvanzado.Text = "Filtrar Artículo";
-            this.lblFiltroAvanzado.Click += new System.EventHandler(this.lblFiltro_Click);
             // 
             // cboCampo
             // 
@@ -143,7 +141,6 @@
             this.lblCampo.Size = new System.Drawing.Size(47, 15);
             this.lblCampo.TabIndex = 3;
             this.lblCampo.Text = "Campo";
-            this.lblCampo.Click += new System.EventHandler(this.lblFiltro_Click);
             // 
             // label2
             // 
@@ -155,7 +152,6 @@
             this.label2.Size = new System.Drawing.Size(46, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "Criterio";
-            this.label2.Click += new System.EventHandler(this.lblFiltro_Click);
             // 
             // txtFiltro
             // 
@@ -201,12 +197,11 @@
             this.lblAvanzado.Size = new System.Drawing.Size(154, 20);
             this.lblAvanzado.TabIndex = 3;
             this.lblAvanzado.Text = "Filtrado Avanzado";
-            this.lblAvanzado.Click += new System.EventHandler(this.lblFiltro_Click);
             // 
             // pnlFiltroAvanzado
             // 
             this.pnlFiltroAvanzado.BackColor = System.Drawing.Color.LightGray;
-            this.pnlFiltroAvanzado.Controls.Add(this.btnFiltrar);
+            this.pnlFiltroAvanzado.Controls.Add(this.btnLimpiar);
             this.pnlFiltroAvanzado.Controls.Add(this.lblAvanzado);
             this.pnlFiltroAvanzado.Controls.Add(this.lblFiltroAvanzado);
             this.pnlFiltroAvanzado.Controls.Add(this.txtFiltroAvanzado);
@@ -221,17 +216,17 @@
             this.pnlFiltroAvanzado.Size = new System.Drawing.Size(158, 681);
             this.pnlFiltroAvanzado.TabIndex = 9;
             // 
-            // btnFiltrar
+            // btnLimpiar
             // 
-            this.btnFiltrar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiltrar.Location = new System.Drawing.Point(30, 561);
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(100, 39);
-            this.btnFiltrar.TabIndex = 8;
-            this.btnFiltrar.Text = "Limpiar";
-            this.btnFiltrar.UseVisualStyleBackColor = true;
-            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            this.btnLimpiar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(30, 561);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(100, 39);
+            this.btnLimpiar.TabIndex = 8;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnVerDetalle
             // 
@@ -249,7 +244,7 @@
             // 
             this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(690, 593);
+            this.btnAgregar.Location = new System.Drawing.Point(272, 593);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(100, 26);
             this.btnAgregar.TabIndex = 2;
@@ -261,7 +256,7 @@
             // 
             this.btnModificar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(481, 593);
+            this.btnModificar.Location = new System.Drawing.Point(490, 593);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(100, 26);
             this.btnModificar.TabIndex = 2;
@@ -273,7 +268,7 @@
             // 
             this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(272, 593);
+            this.btnEliminar.Location = new System.Drawing.Point(708, 593);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 26);
             this.btnEliminar.TabIndex = 2;
@@ -343,7 +338,7 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
 

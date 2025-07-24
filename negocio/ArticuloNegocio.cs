@@ -55,6 +55,12 @@ namespace negocio
         public void Agregar(Articulo nuevoArticulo)
         {
             AccesoDatos datos = new AccesoDatos();
+            if (ValidarExistencia(nuevoArticulo.CodigoArticulo))
+            {
+                throw new Exception("Ya existe un articulo con ese codigo de articulo" +  nuevoArticulo.CodigoArticulo + ". Por favor, ingrese otro nombre."); //si ya existe un articulo con ese nombre, se lanza una excepcion y no se agrega nada
+                
+            }
+             //llamo al metodo para validar que no exista un articulo con el mismo nombre, si no existe, se agrega, si existe, se lanza una excepcion y no se agrega nada
             try
             {
                 datos.SetearConsulta("insert into ARTICULOS  (Codigo , Nombre, Descripcion, ImagenUrl, Precio, IdCategoria, IdMarca) values (@codigo, @nombre, @descripcion, @imagenUrl, @precio, @idCategoria, @idMarca)");
@@ -235,6 +241,34 @@ namespace negocio
                 datos.CerrarConexion();
             }
 
+        }
+        public bool ValidarExistencia(string nombre) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("Select * FROM Articulos WHERE Codigo = @codigo ");
+                datos.SetearParametro("@codigo", nombre); //seteo el valor de la descripcion
+                datos.EjecutarLectura();
+
+                if (datos.Lector.Read()) //Si el lector lee algo, significa que ya existe una categoria con ese nombre
+                {
+                    return true;
+                }
+                else
+                {
+                    return false; //Si no lee nada, no hay problema, se puede agregar la categoria
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw new exception permite dar un mensaje detallado, ya que este no es un form no pueod usar el message box
+                throw new Exception("Error al validar existencia de la categoría", ex);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
     }
 }

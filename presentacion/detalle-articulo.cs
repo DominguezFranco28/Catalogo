@@ -17,7 +17,12 @@ namespace presentacion
         private Articulo articulo = null;
         public detalle_articulo( Articulo articulo)
         {
-
+            //Iba a hacer una validacion para el parametro del articulo aca, pero me parecio redundante ya que el metodo que llama a esta clase hace la validacion previamente
+            //if (articulo == null)
+            //    MessageBox.Show("No se recibió un artículo válido para mostrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    this.Close();
+            //    return;
+            //}
             InitializeComponent();
             this.articulo = articulo;
             
@@ -45,8 +50,6 @@ namespace presentacion
         {
             try
             {
-                if (articulo != null) //si es un Articulo distinto de nulo, es decir, se uso el boton Modificar y llamo al constructor que recibe parametro Art
-                {
                     txtCodigo.Text = articulo.CodigoArticulo;
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
@@ -55,12 +58,12 @@ namespace presentacion
                     txtCategoria.Text = articulo.Categoria.Descripcion;
                     txtMarca.Text = articulo.Marca.Descripcion;
                     CargarImagen(articulo.Imagen);
-                }
+               
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show( "No pudieron cargarse los recursos correctamente" + ex.ToString());
             }
         }
     }

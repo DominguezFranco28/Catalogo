@@ -26,11 +26,10 @@ namespace presentacion
             Text = "Modificar Articulo";
             this.articulo = articuloSeleccionado;
         }
-
-        private void info_articulo_Load(object sender, EventArgs e)
+        private void Cargar()
         {
-           MarcaNegocio marcaNegocio= new MarcaNegocio();
-           CategoriaNegocio categoriaNegocio= new CategoriaNegocio();
+            MarcaNegocio marcaNegocio = new MarcaNegocio();
+             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
             try
             {
                 cboMarca.DataSource = marcaNegocio.Listar();
@@ -49,13 +48,17 @@ namespace presentacion
                     cboCategoria.SelectedValue = articulo.Categoria.Id;
                     cboMarca.SelectedValue = articulo.Marca.Id;
                     CargarImagen(articulo.Imagen);
-                }
-            }
+    }
+}
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("No pudieron cargarse los recursos correctamente" + ex.ToString());
             }
+        }
+        private void info_articulo_Load(object sender, EventArgs e)
+        {
+            Cargar();
         }
 
         private void CargarImagen(string imagen)
@@ -84,15 +87,17 @@ namespace presentacion
             {          
                 if (articulo == null)
                 {
-                    articulo = new Articulo(); //Si no tiene nada pasado por parametro, lo creamos aca.
+                    articulo = new Articulo(); //Si no tiene nada pasado por parametro, lo creamos aca y asignamos los cambios.
                 }
                 articulo.CodigoArticulo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
                 articulo.Imagen= txtImagen.Text;
                 articulo.Precio = nudPrecio.Value;
-                articulo.Categoria= (Categoria)cboCategoria.SelectedItem;
-                articulo.Marca= (Marca)cboMarca.SelectedItem;          
+                articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
+                articulo.Marca = (Marca)cboMarca.SelectedItem;          
+
+                
                 //Sea agregar o modif, hasta aca cargan los campos de igual manera en el item
                if (articulo.Id != 0)
                 {
@@ -106,18 +111,35 @@ namespace presentacion
                     negocio.Agregar(articulo);
                     MessageBox.Show("Articulo agregado con exito");
                 }
+
                     Close();
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Ocurrió un error al cargar el artículo." + ex.ToString());
             }
         }
 
         private void txtImagen_Leave(object sender, EventArgs e)
         {
             CargarImagen(txtImagen.Text);
+        }
+
+        private void btnAgregarCategoria_Click(object sender, EventArgs e)
+        {
+            Categoria nuevaCategoria = new Categoria();
+            agregar_propiedad agregarPropiedad = new agregar_propiedad(nuevaCategoria);
+            agregarPropiedad.ShowDialog(); //Muestro el form de detalle articulo para que se pueda agregar una categoria o marca nueva
+            Cargar(); ; //Vuelvo a cargar el form para que se actualicen las categorias y marcas, sino tenia que salir y volverlo a abrir
+        }
+
+        private void btnAgregarMarca_Click(object sender, EventArgs e)
+        {
+            Marca marcaNueva= new Marca();
+            agregar_propiedad agregarPropiedad = new agregar_propiedad(marcaNueva);
+            agregarPropiedad.ShowDialog(); //Muestro el form de detalle articulo para que se pueda agregar una categoria o marca nueva
+            Cargar();
         }
     }
 }
