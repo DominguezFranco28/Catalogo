@@ -84,7 +84,7 @@ namespace presentacion
             
         }
         //me di cuenta
-        //que no es necesario validar si existe una categoria o marca, ya que al momento de agregarla era mas facil validarla en el negocio
+        //que no es necesario validar si existe una categoria o marca, ya que al momento de agregarla era mas facil validarla en el negocio mismo
 
         //private bool ValidarCategoria(string nombre)
         //{

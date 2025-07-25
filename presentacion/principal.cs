@@ -23,10 +23,6 @@ namespace presentacion
 
         private void Cargar()
         {
-            cboCampo.Items.Add("Nombre");
-            cboCampo.Items.Add("Marca");
-            cboCampo.Items.Add("Categoría");
-            cboCampo.Items.Add("Precio");
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
             try
             {
@@ -34,6 +30,15 @@ namespace presentacion
                 dgvListadoArticulos.DataSource = listaArticulos;
                 CargarImagen(listaArticulos[0].Imagen);//indice 0 para que elija el primer elemento de la lista y comience con una imagen cargada.
                 OcultarColumnas();
+                
+                if(cboCampo.Items.Count == 0) //esta validaicon porque sino se me duplicaban con las cargas
+                {
+
+                cboCampo.Items.Add("Nombre");
+                cboCampo.Items.Add("Marca");
+                cboCampo.Items.Add("Categoría");
+                cboCampo.Items.Add("Precio");
+                }
             }
             catch (Exception ex)
             {
@@ -159,7 +164,6 @@ namespace presentacion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
             info_articulo agregarForm = new info_articulo();
             agregarForm.ShowDialog();
             Cargar();
@@ -175,7 +179,7 @@ namespace presentacion
                 return;
            info_articulo modificarForm = new info_articulo(articuloSeleccionado);
            modificarForm.ShowDialog();
-           Cargar();           
+            Cargar();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -191,7 +195,7 @@ namespace presentacion
                 {
                     articuloNegocio.Eliminar(articuloSeleccionado);
                     MessageBox.Show("Artículo eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                     Cargar();
+                    Cargar();
                 }
             }
             catch (Exception ex)
@@ -258,6 +262,7 @@ namespace presentacion
                     string criterio = cboCriterio.SelectedItem.ToString();
                     string filtro = txtFiltroAvanzado.Text;
                     dgvListadoArticulos.DataSource = articulo.Filtrar(campo, criterio, filtro);
+                    txtFiltro.Clear();//q me limpie el filtro de arriba asi solo se centra en este
 
                 }
                 catch (Exception ex)
@@ -275,11 +280,6 @@ namespace presentacion
             txtFiltroAvanzado.Clear();
             txtFiltro.Clear();
             Cargar();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

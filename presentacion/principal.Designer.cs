@@ -50,6 +50,7 @@
             this.btnVerDetalle = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.pnlBajo = new System.Windows.Forms.Panel();
+            this.lblAyuda = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagen)).BeginInit();
             this.pnlFiltroAvanzado.SuspendLayout();
@@ -63,9 +64,8 @@
             this.dgvListadoArticulos.AllowUserToDeleteRows = false;
             this.dgvListadoArticulos.AllowUserToResizeColumns = false;
             this.dgvListadoArticulos.AllowUserToResizeRows = false;
-            this.dgvListadoArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvListadoArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvListadoArticulos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dgvListadoArticulos.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dgvListadoArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListadoArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -94,7 +94,7 @@
             // 
             this.lblFiltro.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblFiltro.AutoSize = true;
-            this.lblFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFiltro.Location = new System.Drawing.Point(237, 27);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(119, 17);
@@ -194,7 +194,7 @@
             // 
             this.lblAvanzado.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAvanzado.AutoSize = true;
-            this.lblAvanzado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvanzado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAvanzado.Location = new System.Drawing.Point(3, 160);
             this.lblAvanzado.Name = "lblAvanzado";
             this.lblAvanzado.Size = new System.Drawing.Size(154, 20);
@@ -237,13 +237,13 @@
             this.pnl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnl1.BackColor = System.Drawing.Color.LightGray;
             this.pnl1.Controls.Add(this.txtFiltro);
+            this.pnl1.Controls.Add(this.lblAyuda);
             this.pnl1.Controls.Add(this.lblFiltro);
             this.pnl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl1.Location = new System.Drawing.Point(158, 0);
             this.pnl1.Name = "pnl1";
             this.pnl1.Size = new System.Drawing.Size(1106, 75);
             this.pnl1.TabIndex = 10;
-            this.pnl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnModificar
             // 
@@ -312,6 +312,17 @@
             this.pnlBajo.Size = new System.Drawing.Size(1106, 100);
             this.pnlBajo.TabIndex = 11;
             // 
+            // lblAyuda
+            // 
+            this.lblAyuda.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblAyuda.AutoSize = true;
+            this.lblAyuda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAyuda.Location = new System.Drawing.Point(251, 53);
+            this.lblAyuda.Name = "lblAyuda";
+            this.lblAyuda.Size = new System.Drawing.Size(89, 13);
+            this.lblAyuda.TabIndex = 3;
+            this.lblAyuda.Text = "(Código, Nombre)";
+            // 
             // principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,6 +375,7 @@
         private System.Windows.Forms.Button btnVerDetalle;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Panel pnlBajo;
+        private System.Windows.Forms.Label lblAyuda;
     }
 }
 
